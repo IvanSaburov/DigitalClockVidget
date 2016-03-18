@@ -6,6 +6,7 @@
 package myclock;
 
 import static java.lang.Thread.sleep;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
@@ -29,11 +30,20 @@ public void currentTime(){
         Thread clock = new Thread(){
             public void run(){
                 for(;;){
-                    Calendar cal = new GregorianCalendar();
-                    int second = cal.get(Calendar.SECOND);
-                    int minute = cal.get(Calendar.MINUTE);
-                    int hour = cal.get(Calendar.HOUR);
-                    jLabel1.setText("Текущее время: "+(hour+12)+" : "+minute+" : "+second);
+//                    Calendar cal = new GregorianCalendar();
+//                    int second = cal.get(Calendar.SECOND);
+//                    int minute = cal.get(Calendar.MINUTE);
+//                    int hour = cal.get(Calendar.HOUR);
+//                        Calendar c=Calendar.getInstance(); 
+//
+//                        int hour=c.get(c.getTime()); 
+//                        int minute=c.get(c.MONTH)+1; 
+//                        int second=c.get(c.DAY_OF_MONTH);
+//                    jLabel1.setText("Текущее время: "+(hour)+" : "+minute+" : "+second);  
+                        long curTime = System.currentTimeMillis(); 
+                        String curTime1 = new SimpleDateFormat("HH:mm:ss").format(curTime);  
+                        System.out.println(curTime1);
+                        jLabel1.setText("Текущее время:  " + curTime1);
                     try{
                     sleep(1000);
                 } catch(Exception e) {
@@ -95,7 +105,7 @@ public void currentTime(){
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Время:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 20, 520, 44);
+        jLabel1.setBounds(20, 20, 510, 44);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit-icon.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
